@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* High Density overrides: crisp, compact corners instead of oversized rounded-2xl/3xl */
+  --radius-3xl: 8px;
+  --radius-2xl: 6px;
+  --radius-xl: 6px;
+  --radius-lg: 4px;
+  --radius-md: 4px;
+  --radius-sm: 2px;
+}
+
+@layer base {
+  body {
+    @apply antialiased text-slate-900 bg-[#F8FAFC] dark:bg-slate-950 transition-colors duration-200 text-sm;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Compact Table Overrides for High Density Layout */
+  table {
+    @apply w-full text-left border-collapse text-xs;
+  }
+  table th {
+    @apply py-2 px-3 text-[10px] uppercase font-bold tracking-wider bg-slate-50 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400;
+  }
+  table td {
+    @apply py-2 px-3 border-b border-slate-100 dark:border-slate-800/50 text-slate-700 dark:text-slate-300;
+  }
+  table tr:last-child td {
+    @apply border-b-0;
+  }
+
+  /* Compact Input Overrides */
+  input[type="text"], input[type="number"], input[type="date"], select, textarea {
+    @apply py-1.5 px-3 border border-slate-200 dark:border-slate-800 rounded bg-slate-50 dark:bg-slate-900/50 text-xs focus:ring-1 focus:ring-blue-500 focus:bg-white outline-none transition-all;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 dark:bg-slate-700 rounded-full hover:bg-slate-400 dark:hover:bg-slate-600;
+  }
+}
+
+/* Animations helper classes */
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Print Styles for OS Invoice */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
